@@ -4,6 +4,7 @@ var
   vars           = require('postcss-simple-vars')
 	postcss        = require('gulp-postcss');
   concat         = require('gulp-concat');
+  uglify         = require('gulp-uglify');
 	fs             = require("fs")
 	url            = require("postcss-url")
 	sourcemaps     = require('gulp-sourcemaps');
@@ -21,6 +22,7 @@ gulp.task("babel", function () {
   return gulp.src("./*.js")
     .pipe(sourcemaps.init())
     .pipe(babel())
+		.pipe(uglify())
     .pipe(concat("all.js"))
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest("./bundle/"));
