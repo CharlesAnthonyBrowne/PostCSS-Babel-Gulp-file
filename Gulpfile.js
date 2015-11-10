@@ -5,6 +5,7 @@ var
 	postcss        = require('gulp-postcss');
   concat         = require('gulp-concat');
   uglify         = require('gulp-uglify');
+	minifyCss      = require('gulp-minify-css');
 	fs             = require("fs")
 	url            = require("postcss-url")
 	sourcemaps     = require('gulp-sourcemaps');
@@ -38,6 +39,7 @@ gulp.task('watch', function(){
 gulp.task('css', function () {
     return gulp.src('./*.css')
         .pipe(sourcemaps.init())
+				.pipe(minifyCss({compatibility: 'ie8'}))
 	      .pipe(postcss(processors))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./bundle/'));
